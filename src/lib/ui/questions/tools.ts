@@ -27,7 +27,7 @@ export const tools = (tools: Config['tools'], groupsSelected: Config['groups']) 
   return {
     type: 'checkbox',
     name: 'tools',
-    message: 'By default all packages are selected but you can deselect them if necessary',
+    message: 'By default all packages are selected but you can unselect them if necessary',
     choices: filteredGroups(tools)
   };
 };
