@@ -39,7 +39,9 @@ jobs:
       - run: yarn install --frozen-lockfile # from cache I guess
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
-      - run: yarn nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
+      - run: yarn nx run-many --target=${{ matrix.target}} --all
+      - run: npx nx run-many --target=${{ matrix.target}} --all
+      # - run: yarn nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
       # - run: npx nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
 
   build:
