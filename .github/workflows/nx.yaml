@@ -46,6 +46,7 @@ jobs:
           name: buildDist
           path: dist
 
+  # TODO: We need to decide when to launch the build process
   # deploy-package:
   #   runs-on: ubuntu-latest
   #   needs: [build]
