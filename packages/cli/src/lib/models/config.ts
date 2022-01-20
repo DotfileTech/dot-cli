@@ -1,7 +1,7 @@
 import { ToolInstallConfig } from './tool-config';
 
 export class Config {
-  groups: string[];
+  groups?: string[];
 
   tools: { [toolName: string]: ToolInstallConfig };
 }
