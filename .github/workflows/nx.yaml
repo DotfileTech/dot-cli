@@ -28,10 +28,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls
-      - uses: actions/cache@v2
+        uses: actions/setup-node@v2
         with:
-          key:
-          path: node_modules
+          node-version: '16.x'
+          cache: 'yarn'
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
 
