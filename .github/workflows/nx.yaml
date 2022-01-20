@@ -56,14 +56,16 @@ jobs:
         with:
           name: buildDist
           path: dist
+      - run: ls
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org'
-      - run: cd dist/packages/cli
       - run: ls
+        working-directory: './dist/packages/cli'
       - name: Deploy to NPM 🚀
+        working-directory: './dist/packages/cli'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
