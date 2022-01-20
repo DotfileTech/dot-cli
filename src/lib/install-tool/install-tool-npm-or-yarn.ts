@@ -14,23 +14,22 @@ export class InstallToolNpmOrYarn implements InstallStrategy {
 
     if (installed === '') {
       const processRun = new Processes(`Installing  ${name}`);
-      
-      switch(this.name) {
+
+      switch (this.name) {
         case 'yarn': {
-          await processRun.add('yarn', ['add', '-g', name])
-          .start();
-          break; 
+          await processRun.add('yarn', ['add', '-g', name]).start();
+          break;
         }
         case 'npm': {
-          await processRun.add('npm', ['install', '-g', name])
-          .start();
-          break; 
+          await processRun.add('npm', ['install', '-g', name]).start();
+          break;
         }
         default: {
-          throw new Error('Package Manager not handled, need to be yarn or npm');
+          throw new Error(
+            'Package Manager not handled, need to be yarn or npm'
+          );
         }
       }
     }
-
   }
 }
