@@ -27,14 +27,14 @@ jobs:
           cache: 'yarn'
       - run: yarn install --frozen-lockfile # from cache I guess
       - name: Launch ${{matrix.target}} script 🤖
-      - run: npx nx ${{matrix.target}} cli
+        run: npx nx ${{matrix.target}} cli
 
   build:
     runs-on: ubuntu-latest
     needs: [test-and-lint]
     steps:
       - name: Build DotCli 🏗️
-      - run: npx nx build cli
+        run: npx nx build cli
 
   deploy-package:
     runs-on: ubuntu-latest
@@ -47,9 +47,9 @@ jobs:
           node-version: '16.x'
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org'
-      - name: Deploy to NPM 🚀
       - run: cd dist/packages/cli
       - run: ls
-      - run: npm publish
+      - name: Deploy to NPM 🚀
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
