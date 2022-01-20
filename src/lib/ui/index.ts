@@ -20,18 +20,18 @@ export const ui = async (config: Config) => {
   process.stdout.write('\n');
 
   try {
-    const groupsSelected = await inquirer.prompt(groups(config.groups))
-    const toolsSelected = await inquirer.prompt(tools(config.tools, groupsSelected["groups"]))
-    for(const tool of toolsSelected.tools) {
-        await installTool(tool, config.tools[tool]);
+    const groupsSelected = await inquirer.prompt(groups(config.groups));
+    const toolsSelected = await inquirer.prompt(
+      tools(config.tools, groupsSelected['groups'])
+    );
+    for (const tool of toolsSelected.tools) {
+      await installTool(tool, config.tools[tool]);
     }
-
-  } catch(e) {
-      console.error(e)
+  } catch (e) {
+    console.error(e);
   }
-  
-  process.stdout.write('\n');
 
+  process.stdout.write('\n');
 
   return 0;
 };

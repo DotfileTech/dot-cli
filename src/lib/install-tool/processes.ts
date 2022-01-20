@@ -23,7 +23,12 @@ export class Processes {
     let output = '';
     for (const cmd of this.commands) {
       if (!cmd.asRoot) {
-        output += await this.startCommand(cmd.cmd, cmd.args).catch(() => '');
+        console.debug("-")
+        console.debug(cmd.cmd, cmd.args.join(' '));
+        console.debug("-")
+        output += await this.startCommand(cmd.cmd, cmd.args).catch((err) => {
+          console.error(err);
+        });
       } else {
         output += await this.startCommand(
           cmd.cmd,
