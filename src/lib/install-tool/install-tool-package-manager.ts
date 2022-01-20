@@ -14,19 +14,24 @@ export class InstallToolPackageManager implements InstallStrategy {
 
     if (installed === '') {
       const processRun = new Processes(`Installing ${name}`);
-      
+
       switch (process.platform) {
-        case "linux":
-          await processRun.add("apt", [
-            "install",
-            isSpecifiVersion ? `${name}=${tool.version}` : name,
-          ], true).start();
+        case 'linux':
+          await processRun
+            .add(
+              'apt',
+              ['install', isSpecifiVersion ? `${name}=${tool.version}` : name],
+              true
+            )
+            .start();
           break;
-        case "darwin":
-          await processRun.add("brew", [
-            "install",
-            isSpecifiVersion ? `${name}@${tool.version}` : name,
-          ]).start();
+        case 'darwin':
+          await processRun
+            .add('brew', [
+              'install',
+              isSpecifiVersion ? `${name}@${tool.version}` : name,
+            ])
+            .start();
           break;
         default:
           throw new Error(`Platform not supported: ${process.platform}`);
