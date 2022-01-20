@@ -26,7 +26,7 @@ jobs:
           node-version: '16.x'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile # from cache I guess
-      - run: npx nx ${{matric.target}} cli
+      - run: npx nx ${{matrix.target}} cli
 
   build:
     runs-on: ubuntu-latest
