@@ -15,7 +15,7 @@ export const tools = (
 
   const filteredGroups = (tools) => {
     const result: Choices = [];
-    for (let k in tools) {
+    for (const k in tools) {
       const isIncluded = !tools[k].groups.every(
         (group) => !groupsSelected.includes(group)
       );
