@@ -26,23 +26,18 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
+      # - name: Dump GitHub context
+      #   id: github_context_step
+      #   run: echo '${{ toJSON(github) }}'
       - uses: actions/checkout@v2
       # - run: git fetch origin main
-      - run: git fetch --no-tags --prune --depth=1 origin main
+      # - run: git fetch --no-tags --prune --depth=1 origin main
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile # from cache I guess
-      - run: ls
-      - run: echo "Je lance ca=> ${{ matrix.target }}"
-      - run: yarn nx run-many --target=${{ matrix.target}} --all
       - run: npx nx run-many --target=${{ matrix.target}} --all
-      # - run: yarn nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
-      # - run: npx nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
 
   build:
     needs: [test-and-lint]
