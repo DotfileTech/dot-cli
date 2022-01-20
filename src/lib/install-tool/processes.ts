@@ -21,7 +21,7 @@ export class Processes {
   async start() {
     this.startSpinner(this.text);
     let output = '';
-    for (let cmd of this.commands) {
+    for (const cmd of this.commands) {
       if (!cmd.asRoot) {
         output += await this.startCommand(cmd.cmd, cmd.args).catch(() => '');
       } else {
@@ -44,7 +44,7 @@ export class Processes {
       if (!asRoot) {
         child = spawn(cmd, args);
       } else {
-        let childPwd = spawn('echo', [rootPasssword]);
+        const childPwd = spawn('echo', [rootPasssword]);
         args.unshift(cmd);
         args.unshift('-S');
         child = spawn('sudo', args);
@@ -56,11 +56,11 @@ export class Processes {
         this.scriptOutput += data;
       });
 
-      child.stdout.on('end', (e) => {
+      child.stdout.on('end', () => {
         resolve(scriptOutput);
       });
 
-      child.on('error', (e) => {
+      child.on('error', (e: Error) => {
         reject(e);
       });
     });
