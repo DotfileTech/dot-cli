@@ -1,3 +1,4 @@
+import { PlatformValue } from '../util';
 import { InstallMode } from './install-mode';
 
 export class ToolInstallConfig {
@@ -10,7 +11,7 @@ export class ToolInstallConfig {
    */
   groups?: string[];
 
-  mode: InstallMode | { [os in NodeJS.Platform]?: InstallMode };
+  mode: PlatformValue<InstallMode>;
 
   callback?: string;
 
