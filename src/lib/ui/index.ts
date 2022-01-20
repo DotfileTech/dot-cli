@@ -20,20 +20,18 @@ export const ui = async (config: Config) => {
   process.stdout.write('\n');
 
   try {
-    const groupsSelected = await inquirer.prompt(groups(config.groups));
-    const toolsSelected = await inquirer.prompt(
-      tools(config.tools, groupsSelected['groups'])
-    );
-    //@TODO: implement the installer
-    console.log(toolsSelected);
-  } catch (e) {
-    console.error(e);
-  }
+    const groupsSelected = await inquirer.prompt(groups(config.groups))
+    const toolsSelected = await inquirer.prompt(tools(config.tools, groupsSelected["groups"]))
+    for(const tool of toolsSelected.tools) {
+        await installTool(tool, config.tools[tool]);
+    }
 
-  process.stdout.write('\n\n\n\n\n\n');
+  } catch(e) {
+      console.error(e)
+  }
+  
   process.stdout.write('\n');
 
-  await installTool('serverless', config.tools['serverless']);
 
   return 0;
 };

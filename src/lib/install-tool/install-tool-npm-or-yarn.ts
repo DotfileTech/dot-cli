@@ -6,8 +6,6 @@ export class InstallToolNpmOrYarn implements InstallStrategy {
   constructor(public readonly name: 'yarn' | 'npm') {}
 
   async doInstall(name: string, tool: ToolInstallConfig): Promise<void> {
-    process.stdout.write(`Installing package ${name} using ${name}`);
-
     const installed = await new Processes(`Detecting  ${name}`)
       .add(name, ['--version'])
       .start();
