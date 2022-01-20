@@ -1,7 +1,7 @@
-import { instanceToPlain, plainToInstance } from "class-transformer";
-import { Config } from "../models";
+import { instanceToPlain, plainToInstance } from 'class-transformer';
+import { Config } from '../models';
 
-export const DEFAULT_VERSION = "latest";
+export const DEFAULT_VERSION = 'latest';
 
 export function expandConfig(config: Config): Config {
   // clone deep the config
