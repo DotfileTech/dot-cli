@@ -32,8 +32,11 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'yarn'
+      - run: yarn install --frozen-lockfile # from cache I guess
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
+      - run: npx nx affected --target=${{ matrix.target}}
+      - run: yarn nx affected --target=lint
 
   build:
     needs: [test-and-lint]
