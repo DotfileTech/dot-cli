@@ -38,8 +38,8 @@ jobs:
       - run: yarn install --frozen-lockfile # from cache I guess
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
-      - run: npx nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
-      - run: yarn nx affected --target=lint
+      - run: yarn nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
+      # - run: npx nx affected --target=${{ matrix.target}} --base=origin/main --head=${{ github.event.after }}
 
   build:
     needs: [test-and-lint]
