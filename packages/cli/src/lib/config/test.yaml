@@ -1,0 +1,17 @@
+groups:
+  - frontend
+  - backend
+  - infra
+tools:
+  ## COMMON
+  nx:
+    mode: yarn
+    groups:
+      - frontend
+      - backend
+  mkcert:
+    version: 1.4.3
+    mode:
+      darwin: packageManager
+      linux: fromUrl
+    packageUrl: https://github.com/FiloSottile/mkcert/releases/download/v${version}/mkcert-v${version}-linux-amd64
