@@ -30,7 +30,7 @@ jobs:
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
       - uses: actions/checkout@v2
-      - run: git fetch orgin main
+      - run: git fetch origin main
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
