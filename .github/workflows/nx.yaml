@@ -1,11 +1,6 @@
-# - uses: actions/checkout@v2
-# - run: ls
-# - run: npx nx affected --target=lint
-# - run: yarn nx affected --target=lint
 name: Nx Affected CI
 on: [push]
 jobs:
-  # install packages
   setup:
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +12,6 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
-      - run: ls
 
   test-and-lint:
     strategy:
@@ -26,21 +20,23 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      # - name: Dump GitHub context
-      #   id: github_context_step
-      #   run: echo '${{ toJSON(github) }}'
       - uses: actions/checkout@v2
-      # - run: git fetch origin main
-      # - run: git fetch --no-tags --prune --depth=1 origin main
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile # from cache I guess
-      - run: npx nx run-many --target=${{ matrix.target}} --all
+      - run: npx nx ${{matric.target}} cli
 
   build:
-    needs: [test-and-lint]
     runs-on: ubuntu-latest
+    needs: [test-and-lint]
     steps:
-      - run: echo "CA VA BUILDDDD ${{ runner.os }} - ${{ github.repository }}"
+      - run: npx nx build cli
+
+  deploy-package:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main' # only for master
+    steps:
+      - run: echo "CA VA DEPLOY"
