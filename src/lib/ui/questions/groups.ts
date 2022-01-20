@@ -1,9 +1,7 @@
-import { Config } from "../models";
+import { Config } from "../../models";
 
 export const groups = (groups: Config["groups"]) => {
-
   if(!groups) return
-
   return {
     type: 'checkbox',
     name: 'groups',
@@ -12,7 +10,6 @@ export const groups = (groups: Config["groups"]) => {
         checked: true,
         name: g,
         value: g
-        ,
     }))
   }
 

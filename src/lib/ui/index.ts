@@ -3,9 +3,15 @@ import figlet from 'figlet';
 import inquirer = require('inquirer')
 import { installTool } from '../install-tool';
 import { Config } from '../models';
-import { questions } from './questions';
+import {tools} from './questions/tools'
+import {groups} from './questions/groups'
+
+
+
 
  export const ui = async (config: Config) => {
+
+  process.stdout.write('\n');
 
   process.stdout.write(
     chalk.greenBright(
@@ -19,10 +25,14 @@ import { questions } from './questions';
   process.stdout.write('\n');
 
   try {
-    await inquirer.prompt(questions(config))
+    const groupsSelected = await inquirer.prompt(groups(config.groups))
+    const toolsSelected = await inquirer.prompt(tools(config.tools, groupsSelected["groups"]))
+    //@TODO: implement the installer
+    console.log(toolsSelected)
   } catch(e) {
       console.error(e)
   }
+
   process.stdout.write('\n\n\n\n\n\n');
   process.stdout.write('\n');
 
