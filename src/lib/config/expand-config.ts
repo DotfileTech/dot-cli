@@ -1,5 +1,7 @@
-import { instanceToPlain, plainToInstance } from 'class-transformer';
-import { Config } from '../models';
+import { instanceToPlain, plainToInstance } from "class-transformer";
+import { Config } from "../models";
+
+export const DEFAULT_VERSION = "latest";
 
 export function expandConfig(config: Config): Config {
   // clone deep the config
@@ -7,7 +9,7 @@ export function expandConfig(config: Config): Config {
 
   Object.values(configToExpand.tools).forEach((tool) => {
     // set version to latest when unspecified
-    if (!tool.version) tool.version = 'latest';
+    if (!tool.version) tool.version = DEFAULT_VERSION;
 
     // link to all groups when unspecified
     if (!tool.groups)
