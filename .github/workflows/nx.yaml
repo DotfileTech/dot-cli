@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: ls
+      - uses: actions/cache@v2
+      - run: ls
 
   test:
     needs: setup
