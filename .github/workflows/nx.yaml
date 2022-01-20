@@ -13,6 +13,19 @@ jobs:
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
 
+  checker:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile # from cache
+      - name: Launch checker script 💅
+        run: yarn checker
+
   test-and-lint:
     strategy:
       matrix:
