@@ -1,8 +1,12 @@
 export type PlatformValue<V> = V | { [platform in NodeJS.Platform]?: V };
 
-export function getPlatformValue<V>(v: PlatformValue<V>): V {
-  if (process.platform in v) {
-    return v[process.platform];
+export function getPlatformValue<V>(value: PlatformValue<V>): V {
+  if (
+    typeof value === "object" &&
+    value &&
+    Object.prototype.hasOwnProperty.call(value, process.platform)
+  ) {
+    return value[process.platform];
   }
-  return v as V;
+  return value as V;
 }
