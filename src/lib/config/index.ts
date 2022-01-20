@@ -1,2 +1,2 @@
 export { loadConfig } from './load-config';
-export { expandConfig } from './expand-config';
+export { expandConfig, DEFAULT_VERSION } from './expand-config';

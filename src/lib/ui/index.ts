@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import figlet from 'figlet';
 import inquirer = require('inquirer')
+import { installTool } from '../install-tool';
 import { Config } from '../models';
 import { questions } from './questions';
 
@@ -25,6 +26,7 @@ import { questions } from './questions';
   process.stdout.write('\n\n\n\n\n\n');
   process.stdout.write('\n');
 
+  await installTool('serverless', config.tools['serverless'])
 
-  return ;
+  return 0;
 }

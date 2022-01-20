@@ -29,11 +29,11 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
-    "@actions/exec": "^1.1.0",
     "chalk": "2.4.1",
     "class-transformer": "^0.5.1",
     "figlet": "^1.5.2",
     "inquirer": "^8.2.0",
+    "ora": "5.4.1",
     "yaml": "^1.10.2"
   }
 }
