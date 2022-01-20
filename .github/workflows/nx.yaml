@@ -15,7 +15,8 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - run: echo "CA VA LINT ${{ runner.os }} - ${{ github.repository }}"
+      - run: npx nx affected --target=lint
+      - run: yarn nx affected --target=lint
   test:
     needs: setup
     runs-on: ubuntu-latest
