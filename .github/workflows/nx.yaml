@@ -17,6 +17,7 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
+      - run: ls
 
   test-and-lint:
     strategy:
@@ -29,6 +30,7 @@ jobs:
       - run: ls
       - uses: actions/cache@v2
         with:
+          key:
           path: node_modules
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
