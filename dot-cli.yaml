@@ -1,0 +1,62 @@
+companyName: Dotfile
+groups:
+  - 🎨 Frontend
+  - 🔧 Backend
+  - 🏗  Infra
+tools:
+  ## COMMON
+  nx:
+    mode: yarn # npm
+    groups:
+      - 🎨 Frontend
+      - 🔧 Backend
+  mkcert:
+    version: 1.4.3
+    mode:
+      darwin: packageManager
+      linux: fromUrl
+    packageUrl: https://github.com/FiloSottile/mkcert/releases/download/v${version}/mkcert-v${version}-linux-amd64
+  nss:
+    mode:
+      darwin: packageManager
+  gnu-sed:
+    mode:
+      darwin: packageManager
+  jq:
+    mode: packageManager
+  ## BACKEND
+  serverless:
+    mode: yarn
+    groups:
+      - 🔧 Backend
+  ## INFRA
+  kubectl:
+    version: 1.21.1
+    mode:
+      darwin: packageManager
+      linux: fromUrl
+    packageUrl: https://dl.k8s.io/release/v${version}/bin/linux/amd64/kubectl
+    groups:
+      - 🔧 Backend
+      - 🏗 Infra
+  terraform:
+    version: 1.1.2
+    mode:
+      darwin: packageManager
+      linux: fromUrl
+    packageUrl: https://releases.hashicorp.com/terraform/${version}/terraform_${version}_linux_amd64.zip
+    groups:
+      - 🏗 Infra
+  #aws-cli:
+  # mode: custom
+  #  callback: ./tools/aws-cli-callback.js
+  aws-cli:
+    mode: custom
+    callback: aws-cli
+    groups: [Infra]
+  minikube:
+    mode:
+      darwin: packageManager
+      linux: fromUrl
+    packageUrl: https://storage.googleapis.com/minikube/releases/${version}/minikube-linux-amd64
+    groups: [Infra]
