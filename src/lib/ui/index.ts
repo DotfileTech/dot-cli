@@ -3,9 +3,12 @@ import figlet from 'figlet';
 import inquirer = require('inquirer')
 import { installTool } from '../install-tool';
 import { Config } from '../models';
-import {tools, groups} from './questions'
+import {tools} from './questions/tools'
+import {groups} from './questions/groups'
 
  export const ui = async (config: Config) => {
+
+  process.stdout.write('\n');
 
   process.stdout.write(
     chalk.greenBright(
