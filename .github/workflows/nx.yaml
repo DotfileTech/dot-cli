@@ -15,8 +15,10 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'yarn'
+          key: 'modules'
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
+
   test-and-lint:
     strategy:
       matrix:
@@ -27,6 +29,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: ls
       - uses: actions/cache@v2
+        with:
+          key: 'modules'
       - run: ls
       - run: echo "Je lance ca=> ${{ matrix.target }}"
 
