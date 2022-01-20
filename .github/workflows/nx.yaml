@@ -17,7 +17,10 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies 📦
         run: yarn install --frozen-lockfile
-  lint:
+  test-and-lint:
+    strategy:
+      matrix:
+        target: ['test', 'lint']
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -25,14 +28,10 @@ jobs:
       - run: ls
       - uses: actions/cache@v2
       - run: ls
+      - run: echo "Je lance ca=> ${{ matrix.target }}"
 
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "CA VA TEST ${{ runner.os }} - ${{ github.repository }}"
   build:
-    needs: [lint, test]
+    needs: [test-and-lint]
     runs-on: ubuntu-latest
     steps:
       - run: echo "CA VA BUILDDDD ${{ runner.os }} - ${{ github.repository }}"
