@@ -4,6 +4,16 @@
   "projectType": "library",
   "targets": {
     "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/cli",
+        "tsConfig": "packages/cli/tsconfig.lib.json",
+        "packageJson": "packages/cli/package.json",
+        "main": "packages/cli/src/index.ts"
+      }
+    },
+    "package": {
       "executor": "@nrwl/node:package",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -11,7 +21,14 @@
         "tsConfig": "packages/cli/tsconfig.lib.json",
         "packageJson": "packages/cli/package.json",
         "main": "packages/cli/src/index.ts",
-        "assets": ["packages/cli/*.md"]
+        "assets": ["packages/cli/src/*.md"]
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "cli:build",
+        "inspect": false
       }
     },
     "lint": {
